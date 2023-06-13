@@ -1,12 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import Routes from './routes';
+import AuthProvider from './contexts/auth';
 
 export default function App() {
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <AuthProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </AuthProvider>
   );
 }
-
-const styles = StyleSheet.create({});
