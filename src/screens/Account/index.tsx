@@ -1,11 +1,11 @@
-import {View, Text} from 'react-native';
-import React, {useContext} from 'react';
-import {AuthContext} from '../../contexts/auth';
-import {Button} from '../Login/styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text } from "react-native";
+import React, { useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
+import { Button, Container, SubTitle, Title } from "../Login/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Account() {
-  const {user, setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
 
   async function handleLogout() {
     await AsyncStorage.clear();
@@ -13,11 +13,11 @@ export default function Account() {
   }
 
   return (
-    <View>
-      <Text>{user.name}</Text>
+    <Container>
+      <Title>Olá, {user?.name}</Title>
       <Button onPress={handleLogout}>
-        <Text>Sair</Text>
+        <SubTitle>Sair</SubTitle>
       </Button>
-    </View>
+    </Container>
   );
 }
