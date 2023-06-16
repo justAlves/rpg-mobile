@@ -1,6 +1,6 @@
-import {createContext, useState, useEffect} from 'react';
-import api from '../api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createContext, useState, useEffect } from "react";
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type AuthContextData = {
   signUp: (data: AuthData) => void;
@@ -29,16 +29,16 @@ interface AuthResponse {
 
 export const AuthContext = createContext({} as AuthContextData);
 
-function AuthProvider({children}: AuthProviderProps) {
+function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<AuthResponse>();
 
   useEffect(() => {
     async function loadToken() {
-      const token = await AsyncStorage.getItem('@token');
+      const token = await AsyncStorage.getItem("@token");
 
       if (token) {
         try {
-          const response = await api.get('/me', {
+          const response = await api.get("/me", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -46,8 +46,8 @@ function AuthProvider({children}: AuthProviderProps) {
 
           api.defaults.headers.Authorization = `Bearer ${token}`;
 
-          const {id, name, email}: AuthResponse = response.data.user;
-          setUser({id, name, email});
+          const { id, name, email }: AuthResponse = response.data.user;
+          setUser({ id, name, email });
           console.log(user);
         } catch (error) {
           console.log(error);
@@ -60,9 +60,9 @@ function AuthProvider({children}: AuthProviderProps) {
     loadToken();
   }, []);
 
-  async function signUp({name, email, password}: AuthData) {
+  async function signUp({ name, email, password }: AuthData) {
     try {
-      const response = api.post('/register', {
+      const response = api.post("/register", {
         name,
         email,
         password,
@@ -72,18 +72,18 @@ function AuthProvider({children}: AuthProviderProps) {
     }
   }
 
-  async function signIn({email, password}: AuthData) {
+  async function signIn({ email, password }: AuthData) {
     try {
-      const response = await api.post('/auth', {
+      const response = await api.post("/auth", {
         email,
         password,
       });
 
-      const {id, name, token} = response.data.user;
-      await AsyncStorage.setItem('@token', token as string);
+      const { id, name, token } = response.data.user;
+      await AsyncStorage.setItem("@token", token as string);
       api.defaults.headers.Authorization = `Bearer ${token}`;
 
-      setUser({id, name, email});
+      setUser({ id, name, email });
       console.log(user);
     } catch (error) {
       console.log(error);
@@ -92,7 +92,8 @@ function AuthProvider({children}: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{signed: !!user, signUp, signIn, user, setUser}}>
+      value={{ signed: !!user, signUp, signIn, user, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

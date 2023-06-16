@@ -16,7 +16,12 @@ export const ImageContainer = styled.View`
   height: 80px;
   background-color: #1c1c1c;
   border-radius: 10px;
-  margin-right: 10px;
   align-items: center;
   justify-content: center;
+`;
+
+export const CharacterStats = styled.View`
+  width: 65%;
+  height: 100%;
+  margin: 15px;
 `;
