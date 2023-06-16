@@ -4,6 +4,7 @@ import Home from "../screens/Home";
 import AddCharacter from "../screens/AddCharacter";
 import Account from "../screens/Account";
 import Icon from "react-native-vector-icons/Feather";
+import CharacterRoutes from "./character.routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,8 +28,8 @@ export default function AppRoutes() {
             <Icon name="users" color={color} size={24} />
           ),
         }}
-        name="Home"
-        component={Home}
+        name="Select Character"
+        component={CharacterRoutes}
       />
       <Tab.Screen
         options={{
