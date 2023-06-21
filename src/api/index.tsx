@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.0.165:3333",
+  baseURL: "https://rpg-backend-production.up.railway.app:3000",
 });
 
 export default api;

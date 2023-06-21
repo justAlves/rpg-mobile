@@ -9,6 +9,34 @@ import api from '../../api'
 import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
+export function Step({ step, name, setName, strength, setStrength, fight, setFight, agility, setAgility, intelligence, setIntelligence, charm, setCharm, emotion, setEmotion, campaign, setCampaign }: any) {
+  if(step === 1) {
+    return (
+      <StepOne name={name} setName={(text) => setName(text)}/>
+    )
+  }else if(step === 2) {
+    return (
+     <StepTwo
+      strength={strength}
+      setStrength={setStrength}
+      fight={fight}
+      setFight={setFight}
+      agility={agility}
+      setAgility={setAgility}
+      intelligence={intelligence}
+      setIntelligence={setIntelligence}
+      charm={charm}
+      setCharm={setCharm}
+      emotion={emotion}
+      setEmotion={setEmotion}
+     />
+    )
+  }else if(step === 3) {
+    return (
+      <StepThree campaign={campaign} setCampaign={setCampaign} />
+    )
+  }
+}
 
 export default function Form() {
 
@@ -69,39 +97,28 @@ export default function Form() {
     navigation.navigate('Home')
   }
 
-  function Step(){
-    if(step === 1) {
-      return (
-        <StepOne name={name} setName={(text) => setName(text)}/>
-      )
-    }else if(step === 2) {
-      return (
-       <StepTwo
-        strength={strength}
-        setStrength={setStrength}
-        fight={fight}
-        setFight={setFight}
-        agility={agility}
-        setAgility={setAgility}
-        intelligence={intelligence}
-        setIntelligence={setIntelligence}
-        charm={charm}
-        setCharm={setCharm}
-        emotion={emotion}
-        setEmotion={setEmotion}
-       />
-      )
-    }else if(step === 3) {
-      return (
-        <StepThree campaign={campaign} setCampaign={setCampaign} />
-      )
-    }
-  }
-
   return (
 
       <Container>
-        <Step />
+        <Step 
+          step={step}
+          name={name}
+          setName={setName}
+          strength={strength}
+          setStrength={setStrength}
+          fight={fight}
+          setFight={setFight}
+          agility={agility}
+          setAgility={setAgility}
+          intelligence={intelligence}
+          setIntelligence={setIntelligence}
+          charm={charm}
+          setCharm={setCharm}
+          emotion={emotion}
+          setEmotion={setEmotion}
+          campaign={campaign}
+          setCampaign={setCampaign}
+        />
         <ButtonContainer>
           {
             step === 1 ? null : (
