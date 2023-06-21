@@ -1,45 +1,60 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { Picker } from '@react-native-picker/picker'
+import RNPickerSelect from 'react-native-picker-select'
 
-export default function PickerSelect() {
+interface PickerSelectProps {
+  items: {
+    label: string
+    value: number
+  }[]
+  onValueChange: (value: (number | string), index: number) => void
+  value: string | number
+}
 
-  const items = [
-    {
-    label: 'teste',
-    value: 'teste'
-    },
-    {
-    label: 'teste2',
-    value: 'teste2'
-    },
-    {
-    label: 'teste3',
-    value: 'teste3'
-    }
-  ]
+export default function PickerSelect({ items, onValueChange, value }: PickerSelectProps) {
+
 
   return (
-    <Picker
-      selectedValue={null}
-      onValueChange={(itemValue, itemIndex) => null}
-      placeholder='Selecione uma opção'
-      style={{ 
-        height: 50, 
-        width: 200, 
-        backgroundColor: '#313131',
-        borderRadius: 10,
-        color: '#fff',
-        fontSize: 16,
-        paddingLeft: 10,
-        marginBottom: 10
+    <RNPickerSelect
+      items={[...items]}
+      onValueChange={onValueChange}
+      value={value}
+      style={{
+        inputIOS: {
+          fontSize: 16,
+          paddingVertical: 12,
+          paddingHorizontal: 10,
+          borderWidth: 1,
+          borderColor: '#fff',
+          borderRadius: 4,
+          color: '#fff',
+          paddingRight: 30,
+          backgroundColor: '#000',
+          marginTop: 10,
+          marginBottom: 10,
+        },
+        inputAndroid: {
+          fontSize: 16,
+          paddingHorizontal: 10,
+          paddingVertical: 8,
+          borderWidth: 1,
+          borderColor: '#fff',
+          borderRadius: 8,
+          color: '#fff',
+          paddingRight: 30,
+          backgroundColor: '#303030',
+          marginTop: 10,
+          marginBottom: 10,
+        },
       }}
-      dropdownIconColor='#fff'
-    >
-      <Picker.Item label="teste" value="teste" />
-      <Picker.Item label="teste2" value="teste2" />
-      <Picker.Item label="teste3" value="teste3" />
-    </Picker>
+      placeholder={{
+        label: 'Selecione um valor',
+        value: null,
+        color: '#000',
+        inputLabel: 'Selecione um valor',
+      }}
+      
+    />
   )
 }

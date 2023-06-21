@@ -11,19 +11,21 @@ import DiceModal from '../../components/DiceModal'
 import UpdateLifeModal from '../../components/UpdateLifeModal'
 import UpdateSanityModal from '../../components/UpdateSanityModal'
 
-type Character = {
-  id: string
-  name: string
-  currentLife: number
-  maxLife: number
-  currentSanity: number
-  maxSanity: number
-  strength: number
-  fight: number
-  agility: number
-  intelligence: number
-  charm: number
-  emotion: number
+interface Character {
+  character: {
+    id: string
+    name: string
+    currentLife: number
+    maxLife: number
+    currentSanity: number
+    maxSanity: number
+    strength: number
+    fight: number
+    agility: number
+    intelligence: number
+    charm: number
+    emotion: number
+  }[]
 }
 
 export default function Character() {

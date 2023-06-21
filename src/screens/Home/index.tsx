@@ -4,6 +4,7 @@ import { Container } from '../Login/styles';
 import api from '../../api';
 import CharacterCard from '../../components/CharacterCard';
 import { CharacterList } from './styles';
+import { useIsFocused } from '@react-navigation/native';
 
 type Characters = {
   id: string;
@@ -12,6 +13,8 @@ type Characters = {
 
 export default function Home() {
   const [characters, setCharacters] = useState<Characters>([]);
+
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     async function getCharacters() {
@@ -26,7 +29,7 @@ export default function Home() {
     }
 
     getCharacters();
-  }, []);
+  }, [isFocused]);
 
   return (
     <Container>
